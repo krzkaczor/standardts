@@ -1,0 +1,25 @@
+{
+  "name": "standardts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krzkaczor/standardts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krzkaczor/standardts/issues"
+  },
+  "homepage": "https://github.com/krzkaczor/standardts#readme",
+  "dependencies": {
+    "tslint": "3.7.4",
+    "tslint-eslint-rules": "1.2.0",
+    "typescript": "1.8.10"
+  }
+}
