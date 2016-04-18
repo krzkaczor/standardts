@@ -1,0 +1,12 @@
+{
+  "semicolon": [
+    true,
+    "never"
+  ],
+  "no-unexpected-multiline": true,
+  "comment-format": [
+    true,
+    "check-space"
+  ],
+  "eofline": true
+}
