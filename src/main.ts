@@ -22,7 +22,7 @@ program
 const cwd = process.cwd()
 const absolutePathToFiles = program.args.map((p:string) => path.join(cwd, p))
 
-const linitngFailures = absolutePathToFiles.reduce((failures, absPath:string) => {
+const linitngFailures = absolutePathToFiles.reduce((failures: any, absPath:string) => {
     const source = fs.readFileSync(absPath, "utf8")
     var ll = new Linter(absPath, source, options)
     const results = ll.lint()
@@ -37,7 +37,7 @@ if (linitngFailures.length === 0) {
     process.exit(0)
 }
 
-linitngFailures.forEach(failure => {
+linitngFailures.forEach((failure :any) => {
     console.log(` ${failure.fileName}:${failure.startPosition.lineAndCharacter.line}:${failure.startPosition.lineAndCharacter.character}: ${failure.failure}`)
 })
 process.exit(1)
