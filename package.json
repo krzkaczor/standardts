@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +20,12 @@
   },
   "homepage": "https://github.com/krzkaczor/standardts#readme",
   "dependencies": {
+    "commander": "2.9.0",
     "tslint": "3.7.4",
     "tslint-eslint-rules": "1.2.0",
+    "typescript": "1.8.10"
+  },
+  "devDependencies": {
     "typescript": "1.8.10"
   }
 }
