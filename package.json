@@ -2,13 +2,14 @@
   "name": "standardts",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/cli.js",
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build",
     "start": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": "./dist/cli.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/krzkaczor/standardts.git"

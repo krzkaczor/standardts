@@ -8,5 +8,10 @@
     true,
     "check-space"
   ],
-  "eofline": true
+  "eofline": true,
+  "quotemark": [
+    true,
+    "single",
+    "avoid-escape"
+  ]
 }
