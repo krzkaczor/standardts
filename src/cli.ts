@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const program = require('commander')
-const path = require('path')
-const Linter = require('tslint')
+/// <reference path="../typings/main.d.ts" />
+import * as program from 'commander'
+import {join} from 'path'
+import * as Linter from 'tslint'
 const fs = require('fs')
 
 const packageInfo = require('../package.json')
@@ -13,6 +14,7 @@ const options = {
         rules
     },
     formatter: 'json',
+    formattersDirectory: '',
     rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
 }
 
@@ -22,9 +24,9 @@ program
     .parse(process.argv)
 
 const cwd = process.cwd()
-const absolutePathToFiles = program.args.map((p:string) => path.join(cwd, p))
+const absolutePathToFiles = program.args.map((p) => join(cwd, p))
 
-const linitngFailures = absolutePathToFiles.reduce((failures: any, absPath:string) => {
+const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
     const source = fs.readFileSync(absPath, 'utf8')
     var ll = new Linter(absPath, source, options)
     const results = ll.lint()
@@ -39,7 +41,7 @@ if (linitngFailures.length === 0) {
     process.exit(0)
 }
 
-linitngFailures.forEach((failure :any) => {
+linitngFailures.forEach((failure) => {
     console.log(` ${failure.fileName}:${failure.startPosition.lineAndCharacter.line}:${failure.startPosition.lineAndCharacter.character}: ${failure.failure}`)
 })
 process.exit(1)

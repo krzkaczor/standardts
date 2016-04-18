@@ -1,6 +1,6 @@
 # StandardTS
 
-Opinionated code style for typescript based on StandardJS.
+Opinionated code style for TypeScript based on StandardJS.
 
 ```npm install standardts -g```
 

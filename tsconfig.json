@@ -4,13 +4,12 @@
         "noImplicitAny": true,
         "module": "commonjs",
         "sourceMap": false,
-        "outDir": "dist",
-        "rootDir": "src"
+        "outDir": "dist"
     },
+    "files": [
+        "src/cli.ts"
+    ],
     "exclude": [
-        "node_modules",
-        "typings/browser",
-        "typings/browser.d.ts",
-        "example.ts"
+        "node_modules"
     ]
 }

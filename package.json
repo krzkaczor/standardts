@@ -1,7 +1,7 @@
 {
   "name": "standardts",
   "version": "0.0.2",
-  "description": "",
+  "description": "Opinionated code style for TypeScript based on StandardJS",
   "main": "dist/cli.js",
   "scripts": {
     "build": "tsc",
@@ -14,9 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/krzkaczor/standardts.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["standardts", "typescript", "standard", "code", "style"],
+  "author": "Krzysztof Kaczor",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/krzkaczor/standardts/issues"
   },
