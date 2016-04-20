@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build",
-    "start": "tsc -w",
+    "watch": "tsc -w",
+    "self-test": "node dist/cli.js src/cli.ts",
+    "preself-test": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": "./dist/cli.js",

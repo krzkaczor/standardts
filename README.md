@@ -7,6 +7,8 @@ Opinionated code style for TypeScript based on StandardJS.
 ## Currently supported
  - no semicolons
  - single quotes
+ - no unused variables
+ - use always `===` (only `== null` check allowed)
 
 ## Usage
 ```standardts <files...>```

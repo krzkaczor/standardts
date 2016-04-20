@@ -13,5 +13,13 @@
     true,
     "single",
     "avoid-escape"
+  ],
+  "no-unused-variable": [
+    true,
+    "react"
+  ],
+  "triple-equals": [
+    true,
+    "allow-null-check"
   ]
 }
