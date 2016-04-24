@@ -4,7 +4,9 @@
 import * as program from 'commander'
 import {join} from 'path'
 import * as Linter from 'tslint'
-const fs = require('fs')
+import * as fs from 'fs'
+import * as glob from 'glob'
+import {flatten} from 'lodash'
 
 const packageInfo = require('../package.json')
 const rules = require('./../rules.json')
@@ -19,17 +21,19 @@ const options = {
 }
 
 program
-    .version(packageInfo.version)
+     .version(packageInfo.version)
     .usage('<file ...>')
     .parse(process.argv)
 
 const cwd = process.cwd()
-const absolutePathToFiles = program.args.map((p) => join(cwd, p))
+const args = program.args.length !== 0 ? program.args : ['!(node_modules|typings)/\*.ts', '!(node_modules|typings)/\*.tsx']
+const absolutePathToFiles = flatten(args.map((p) => join(cwd, p)).map((path) => glob.sync(path)))
 
 const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
     const source = fs.readFileSync(absPath, 'utf8')
     var ll = new Linter(absPath, source, options)
     const results = ll.lint()
+    
     if (results.failureCount > 0) {
         return failures.concat(results.failures)
     } else {

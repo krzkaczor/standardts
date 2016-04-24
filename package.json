@@ -1,22 +1,30 @@
 {
   "name": "standardts",
   "version": "0.0.2",
-  "description": "Opinionated code style for TypeScript based on StandardJS",
+  "description": "Opinionated code style for TypeScript",
   "main": "dist/cli.js",
   "scripts": {
+    "start": "node dist/cli.js",
+    "prestart": "npm run build --silent",
     "build": "tsc",
     "prepublish": "npm run build",
     "watch": "tsc -w",
-    "self-test": "node dist/cli.js src/cli.ts",
+    "self-test": "node dist/cli.js",
     "preself-test": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run preself-test"
   },
   "bin": "./dist/cli.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/krzkaczor/standardts.git"
   },
-  "keywords": ["standardts", "typescript", "standard", "code", "style"],
+  "keywords": [
+    "standardts",
+    "typescript",
+    "standard",
+    "code",
+    "style"
+  ],
   "author": "Krzysztof Kaczor",
   "license": "MIT",
   "bugs": {
@@ -25,6 +33,8 @@
   "homepage": "https://github.com/krzkaczor/standardts#readme",
   "dependencies": {
     "commander": "2.9.0",
+    "glob": "7.0.3",
+    "lodash": "4.11.1",
     "tslint": "3.7.4",
     "tslint-eslint-rules": "1.2.0",
     "typescript": "1.8.10"

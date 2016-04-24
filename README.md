@@ -11,8 +11,11 @@ Opinionated code style for TypeScript based on StandardJS.
  - use always `===` (only `== null` check allowed)
 
 ## Usage
-```standardts <files...>```
-(for now no globing is supported, sorry)
+```
+standardts <files...>
+```
+
+`standardts` by default will run linting on every ts or tsx file in the current working directory (omitting `node_modules` and `typings`) 
 
 
 ## Development
