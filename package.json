@@ -36,8 +36,7 @@
     "glob": "7.0.3",
     "lodash": "4.11.1",
     "tslint": "3.7.4",
-    "tslint-eslint-rules": "1.2.0",
-    "typescript": "1.8.10"
+    "tslint-eslint-rules": "krzkaczor/tslint-eslint-rules#prepublish-script"
   },
   "devDependencies": {
     "typescript": "1.8.10"
