@@ -1,0 +1,41 @@
+{
+  "rulesDirectory": "./node_modules/tslint-eslint-rules/dist/rules",
+  "rules": {
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "no-unexpected-multiline": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "eofline": true,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "no-unused-variable": [
+      true,
+      "react"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-operator"
+    ],
+    "handle-callback-err": [
+      true,
+      "^(err|error)$"
+    ]
+  }
+}

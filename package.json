@@ -11,7 +11,7 @@
     "watch": "tsc -w",
     "self-test": "node dist/cli.js",
     "preself-test": "npm run build",
-    "test": "npm run preself-test"
+    "test": "npm run --silent self-test"
   },
   "bin": "./dist/cli.js",
   "repository": {

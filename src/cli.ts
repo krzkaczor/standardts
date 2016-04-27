@@ -9,7 +9,7 @@ import * as glob from 'glob'
 import {flatten} from 'lodash'
 
 const packageInfo = require('../package.json')
-const rules = require('./../rules.json')
+const rules = require('./../tslint.json').rules
 
 const options = {
     configuration: {
