@@ -17,7 +17,7 @@ const options = {
     },
     formatter: 'json',
     formattersDirectory: '',
-    rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
+    rulesDirectory: join(__dirname, '../node_modules/tslint-eslint-rules/dist/rules')
 }
 
 program

@@ -23,6 +23,7 @@ standardts <files...>
  - use always 2 spaces for indent (currently [http://palantir.github.io/tslint/rules/indent/](indent rule) doesn't  support it)
  - promise helpers
  - typescript specific rules
+ - react specific rules
 
 ## TSlint rules created thanks to this project:
  - `handle-callback-err`
