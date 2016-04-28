@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-/// <reference path="../typings/main.d.ts" />
 import * as program from 'commander'
 import {join} from 'path'
 import * as Linter from 'tslint'
@@ -21,19 +20,19 @@ const options = {
 }
 
 program
-     .version(packageInfo.version)
+    .version(packageInfo.version)
     .usage('<file ...>')
     .parse(process.argv)
 
 const cwd = process.cwd()
-const args = program.args.length !== 0 ? program.args : ['!(node_modules|typings)/\*.ts', '!(node_modules|typings)/\*.tsx']
+const args = program.args.length !== 0 ? program.args : [`!(node_modules|typings)/**/*.ts`, `!(node_modules|typings)/**/*.tsx`]
 const absolutePathToFiles = flatten(args.map((p) => join(cwd, p)).map((path) => glob.sync(path)))
 
 const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
     const source = fs.readFileSync(absPath, 'utf8')
     var ll = new Linter(absPath, source, options)
     const results = ll.lint()
-    
+
     if (results.failureCount > 0) {
         return failures.concat(results.failures)
     } else {
