@@ -1,6 +1,6 @@
 {
   "name": "standardts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Opinionated code style for TypeScript",
   "main": "dist/cli.js",
   "scripts": {
