@@ -17,7 +17,7 @@ Opinionated code style for TypeScript based on StandardJS.
 standardts <files...>
 ```
 
-`standardts` by default will run linting on every ts or tsx file in the current working directory (omitting `node_modules` and `typings`)
+`standardts` by default will run linting on every `ts` or `tsx` file in the current working directory (omitting `node_modules` and `typings`)
 
 ## Missing core rules
  - use always 2 spaces for indent (currently [http://palantir.github.io/tslint/rules/indent/](indent rule) doesn't  support it)
