@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/krzkaczor/standardts#readme",
   "dependencies": {
-    "commander": "2.9.0",
-    "glob": "7.0.3",
-    "lodash": "4.11.1",
-    "tslint": "3.7.4",
+    "commander": "~2.9.0",
+    "glob": "~7.0.3",
+    "lodash": "~4.11.1",
+    "tslint": "~3.7.4",
     "tslint-eslint-rules": "krzkaczor/tslint-eslint-rules#prepublish-script"
   },
   "devDependencies": {
-    "typescript": "1.8.10"
+    "typescript": "~1.8.10"
   }
 }

@@ -16,7 +16,7 @@ const options = {
   },
   formatter: 'json',
   formattersDirectory: '',
-  rulesDirectory: join(__dirname, '../node_modules/tslint-eslint-rules/dist/rules')
+  rulesDirectory: join(require.resolve('tslint-eslint-rules'), '../dist/rules')
 }
 
 program
@@ -25,8 +25,17 @@ program
   .parse(process.argv)
 
 const cwd = process.cwd()
-const args = program.args.length !== 0 ? program.args : [`!(node_modules|typings)/**/*.ts`, `!(node_modules|typings)/**/*.tsx`]
-const absolutePathToFiles = flatten(args.map((p) => join(cwd, p)).map((path) => glob.sync(path)))
+const args = program.args
+
+let absolutePathToFiles: Array<string>
+
+if (args.length > 0) {
+  absolutePathToFiles = flatten(args.map((p) => join(cwd, p)).map((path) => glob.sync(path)))
+} else {
+  absolutePathToFiles = glob.sync('**/*.ts', {ignore: [`node_modules/**/*.ts`, `typings/**/*.ts`]})
+}
+
+console.info(`Checking ${absolutePathToFiles.length} files...`)
 
 const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
   const source = fs.readFileSync(absPath, 'utf8')
@@ -41,10 +50,13 @@ const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
 }, [])
 
 if (linitngFailures.length === 0) {
+  console.info('Done!')
   process.exit(0)
 }
 
 linitngFailures.forEach((failure) => {
-  console.log(` ${failure.fileName}:${failure.startPosition.lineAndCharacter.line}:${failure.startPosition.lineAndCharacter.character}: ${failure.failure}`)
+  console.log(` ${failure.fileName}:${failure.startPosition.lineAndCharacter.line + 1}:${failure.startPosition.lineAndCharacter.character + 1}: ${failure.failure}`)
 })
+console.log(`Errors: ${linitngFailures.length}`)
+
 process.exit(1)
