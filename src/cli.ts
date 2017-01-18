@@ -12,8 +12,8 @@ const configuration = require('../tslint.json')
 
 program
   .version(packageInfo.version)
-  .usage('<file ...>')
-  .option('--fix', 'Automatically fix some violations')
+  .usage('<file ...> [--fix]')
+  .option('--fix', 'automatically fix some violations')
   .parse(process.argv)
 
 interface Program extends program.IExportedCommand {
