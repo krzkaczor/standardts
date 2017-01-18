@@ -2,61 +2,67 @@
 
 import * as program from 'commander'
 import {join} from 'path'
-import * as Linter from 'tslint'
+import {Linter, RuleFailure} from 'tslint'
 import * as fs from 'fs'
 import * as glob from 'glob'
 import {flatten} from 'lodash'
 
 const packageInfo = require('../package.json')
-const rules = require('./../tslint.json').rules
-
-const options = {
-  configuration: {
-    rules
-  },
-  formatter: 'json',
-  formattersDirectory: '',
-  rulesDirectory: join(require.resolve('tslint-eslint-rules'), '../dist/rules')
-}
+const configuration = require('../tslint.json')
 
 program
   .version(packageInfo.version)
   .usage('<file ...>')
+  .option('--fix', 'Automatically fix some violations')
   .parse(process.argv)
+
+interface Program extends program.IExportedCommand {
+  fix: boolean
+}
 
 const cwd = process.cwd()
 const args = program.args
+
+const linter = new Linter({
+  formatter: 'json',
+  formattersDirectory: '',
+  rulesDirectory: join(require.resolve('tslint-eslint-rules'), '../dist/rules'),
+  fix: (program as Program).fix
+})
 
 let absolutePathToFiles: Array<string>
 
 if (args.length > 0) {
   absolutePathToFiles = flatten(args.map((p) => join(cwd, p)).map((path) => glob.sync(path)))
 } else {
-  absolutePathToFiles = glob.sync('**/*.ts', {ignore: [`node_modules/**/*.ts`, `typings/**/*.ts`]})
+  absolutePathToFiles = glob.sync('**/*.ts?(x)', {ignore: ['node_modules/**/*.ts?(x)', 'typings/**/*.ts?(x)']})
 }
 
 console.info(`Checking ${absolutePathToFiles.length} files...`)
 
-const linitngFailures = absolutePathToFiles.reduce((failures, absPath) => {
+const lintingFailures = absolutePathToFiles.reduce<RuleFailure[]>((failures, absPath) => {
   const source = fs.readFileSync(absPath, 'utf8')
-  var ll = new Linter(absPath, source, options)
-  const results = ll.lint()
+  linter.lint(absPath, source, configuration)
+  const results = linter.getResult()
 
   if (results.failureCount > 0) {
     return failures.concat(results.failures)
   } else {
     return failures
   }
-}, [])
+}, [] as RuleFailure[])
 
-if (linitngFailures.length === 0) {
+if (lintingFailures.length === 0) {
   console.info('Done!')
   process.exit(0)
 }
 
-linitngFailures.forEach((failure) => {
-  console.log(` ${failure.fileName}:${failure.startPosition.lineAndCharacter.line + 1}:${failure.startPosition.lineAndCharacter.character + 1}: ${failure.failure}`)
+lintingFailures.forEach((failure) => {
+  const fileName = failure.getFileName()
+  const {line, character} = failure.getStartPosition().getLineAndCharacter()
+  const message = failure.getFailure()
+  console.log(` ${fileName}:${line + 1}:${character + 1}: ${message}`)
 })
-console.log(`Errors: ${linitngFailures.length}`)
+console.log(`Errors: ${lintingFailures.length}`)
 
 process.exit(1)

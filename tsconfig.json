@@ -7,7 +7,6 @@
         "outDir": "dist"
     },
     "files": [
-        "typings/main.d.ts",
         "src/cli.ts"
     ],
     "exclude": [
