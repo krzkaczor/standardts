@@ -14,7 +14,7 @@ Opinionated code style for TypeScript based on StandardJS.
 
 ## Usage
 ```
-standardts <files...>
+standardts <files...> [--fix]
 ```
 
 `standardts` by default will run linting on every `ts` or `tsx` file in the current working directory (omitting `node_modules` and `typings`)
